@@ -1,0 +1,484 @@
+<!--INDIVIDUAL CLIENT CREATE KYC FORM-->
+<div>
+    {{user | json}}
+    <div class="mb-4">
+        <h1><b>Create your e-Kyc</b></h1>
+        
+    </div>
+    <div class="box-padding">
+        <div class="{{formtype==='IND' ? 'container-fluid' : 'container-fluid-leg'}}">
+            <form class="form" (ngSumbit)="formSubmit()">
+
+
+
+                 <!-- ------- CLIENT TYPE CONDITIONAL RADIO ------ -->
+
+
+                <div class="mb-5">
+                    <label for="ctype" class="form-label"> Client Type: </label>
+                </div>
+                <div class="option-center">
+                    <label class="radio-container m-r-45">
+                        <div class="mb-33" style="float:left">
+                        <input [(ngModel)]="user.ctype" type="radio" name="ctype" value="IND" (click)="clientTypeDisplay('IND')" id="ctype" checked/>    Individual
+                        </div>
+                    </label>
+                    <label class="radio-container m-r-45">
+                        <div class="mb-33" style="float:left">
+                        <input [(ngModel)]="user.ctype" type="radio" name="ctype" value="LEG" (click)="clientTypeDisplay('LEG')" id="ctype"/>    Legal/Corporate
+                        </div>
+                    </label>
+                </div>
+                <div style="clear:both;">&nbsp;</div>
+
+
+                <!-- ------- INPUT FIELDS ------ -->
+
+                <!-- Individual Create Kyc Form -->
+
+                <div class="IND" *ngIf="formtype=='IND'">
+
+                    <!-- Personal details -->
+                    <div>
+                        <h1 class="mb-5">Personal Details</h1>
+
+                        <div class="mb-3" style="float:left">
+                            <label for="fname" class="form-label" >First Name</label>
+                            <input [(ngModel)]="user.fname" type="firstName" class="form-control box1" name="fname"  placeholder="Enter First Name">
+                        </div>
+
+                        <div class="mb-3" style="float:left">
+                            <label for="mname" class="form-label">Middle Name</label>
+                            <input [(ngModel)]="user.mname" type="MiddleName" class="form-control box1" name="mname" placeholder="Enter Middle Name">
+                        </div>
+
+                        <div class="mb-3" style="float:left">
+                            <label for="lname" class="form-label">Last Name</label>
+                            <input [(ngModel)]="user.lname" type="LastName" class="form-control box1" name="lname" placeholder="Enter Last Name">
+                        </div>
+
+                        <div style="clear:both;">&nbsp;</div>
+
+                        <div class="mb-3" style="float:left">
+                            <label for="prefix" class="form-label">Prefix</label>
+                            <input [(ngModel)]="user.prefix" type="Prefix" class="form-control box1" name="prefix" placeholder="Mr/Mrs/Master/Ms">
+                        </div>
+
+                        <div class="mb-3" style="float:left">
+                            <label for="dob" class="form-label">Date of Birth</label>
+                            <input [(ngModel)]="user.dob" type="DateOfBirth" class="form-control box1" name="dob" placeholder="DD/MM/YYYY">
+                        </div>
+
+                        <div class="mb-3" style="float:left">
+                            <label for="gender" class="form-label">Gender</label>
+                            <br>
+                            <select>
+                            <input [(ngModel)]="user.gender" type="Gender" class="form-control box1" name="gender" placeholder="Select Gender">
+                            <option>Select an option</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Transgender">Transgender</option>
+                            <option value="Other">Other</option>
+                            <option value="Prefer not to say">Prefer not to say</option>
+                            </select>
+                        </div>
+
+                        <div style="clear:both;">&nbsp;</div>
+
+                    </div>
+
+                    <!-- Related Person Details -->
+                    <div>
+                        <h1 class="mb-5">Details of Related Person</h1>
+                            <div class="mb-3" style="float:left">
+                                <label for="rprefix" class="form-label">Prefix</label>
+                                <input [(ngModel)]="user.rprefix" type="Prefix" class="form-control box2" name="rprefix" placeholder="Mr/Mrs/Master/Ms">
+                            </div>
+                            <div class="mb-3" style="float:left">
+                                <label for="relationship" class="form-label">Relationship</label>
+                                <input [(ngModel)]="user.relationship" type="Relationship" class="form-control box2" name="relationship" placeholder="Enter the type of Relationship">
+                            </div>
+                        <div style="clear:both;">&nbsp;</div>
+                        <div class="mb-3" style="float:left">
+                            <label for="rfname" class="form-label" >First Name</label>
+                            <input [(ngModel)]="user.rfname" type="RelativeFirstName" class="form-control box1" name="rfname"  placeholder="Enter First Name">
+                        </div>
+                        <div class="mb-3" style="float:left">
+                            <label for="rmname" class="form-label">Middle Name</label>
+                            <input [(ngModel)]="user.rmname" type="RelativeMiddleName" class="form-control box1" name="rmname" placeholder="Enter Middle Name">
+                        </div>
+                        <div class="mb-3" style="float:left">
+                            <label for="rlname" class="form-label">Last Name</label>
+                            <input [(ngModel)]="user.rlname" type="RelativeLastName" class="form-control box1" name="rlname" placeholder="Enter Last Name">
+                        </div>
+                        <div style="clear:both;">&nbsp;</div>
+
+                    </div>
+
+                    <!-- Contact details -->
+                    <div>
+                        <h1 class="mb-5">Contact Details</h1>
+                            <div class="mb-3" style="float:left">
+                                <label for="mobile" class="form-label">Mobile Number</label>
+                                <input [(ngModel)]="user.mobile" type="MobileNo" class="form-control box2" name="mobile" placeholder="Enter 10 digit mobile number">
+                            </div>
+                            <div class="mb-3" style="float:left">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input [(ngModel)]="user.email" type="Email" class="form-control box2" name="email" placeholder="Enter your email address">
+                            </div>
+                        <div style="clear:both;">&nbsp;</div>
+                    </div>
+
+                    <!-- Address Details -->
+                    <div>
+                        <h1 class="mb-5">Address Details</h1>
+                            <div class="mb-3" style="float:left">
+                                <label for="addl1" class="form-label">Address line 1</label>
+                                <input [(ngModel)]="user.addl1" type="Add1" class="form-control box-3" name="addl1" placeholder="Enter Flat, Building, Floor, etc.">
+                            </div>
+                        <div style="clear:both;">&nbsp;</div>
+                        <div class="mb-3" style="float:left">
+                            <label for="city" class="form-label">City</label>
+                            <input [(ngModel)]="user.city" type="City" class="form-control box1" name="city"  placeholder="Enter City">
+                        </div>
+                        <div class="mb-3" style="float:left">
+                            <label for="district" class="form-label">District</label>
+                            <input [(ngModel)]="user.district" type="District" class="form-control box1" name="district" placeholder="Enter District">
+                        </div>
+                        <div class="mb-3" style="float:left">
+                            <label for="state" class="form-label">State</label>
+                            <input [(ngModel)]="user.state" type="State" class="form-control box1" name="state" placeholder="Enter State">
+                        </div>
+                        <div style="clear:both;">&nbsp;</div>
+                        <div class="mb-3" style="float:left">
+                            <label for="country" class="form-label">Country</label>
+                            <input [(ngModel)]="user.country" type="Country" class="form-control box2" name="country" placeholder="Enter Country">
+                        </div>
+                        <div class="mb-3" style="float:left">
+                            <label for="pincode" class="form-label">Pin Code</label>
+                            <input [(ngModel)]="user.pincode" type="Pin" class="form-control box2" name="pincode" placeholder="Enter Pin Code">
+                        </div>
+                        <div style="clear:both;">&nbsp;</div>
+                    </div>
+
+                    <!-- Correspondence Address Details -->
+                    <div>
+                        <h1 class="mb-5">Correspondence Address Details</h1>
+                            <div class="mb-3" style="float:left">
+                                <label for="caddl1" class="form-label">Correspondence Address line 1</label>
+                                <input [(ngModel)]="user.caddl1" type="CAdd1" class="form-control box-3" name="caddl1" placeholder="Enter Flat, Building, Floor, etc.">
+                            </div>
+                        <div style="clear:both;">&nbsp;</div>
+                        <div class="mb-3" style="float:left">
+                            <label for="ccity" class="form-label">Correspondence City</label>
+                            <input [(ngModel)]="user.ccity" type="CCity" class="form-control box1" name="ccity"  placeholder="Enter Correspondence City">
+                        </div>
+                        <div class="mb-3" style="float:left">
+                            <label for="cdistrict" class="form-label">Correspondence District</label>
+                            <input [(ngModel)]="user.cdistrict" type="CDistrict" class="form-control box1" name="cdistrict" placeholder="Enter Correspondence District">
+                        </div>
+                        <div class="mb-3" style="float:left">
+                            <label for="cstate" class="form-label">Correspondence State</label>
+                            <input [(ngModel)]="user.cstate" type="CState" class="form-control box1" name="cstate" placeholder="Enter Correspondence State">
+                        </div>
+                        <div style="clear:both;">&nbsp;</div>
+                        <div class="mb-3" style="float:left">
+                            <label for="ccountry" class="form-label">Correspondence Country</label>
+                            <input [(ngModel)]="user.ccountry" type="CCountry" class="form-control box2" name="ccountry" placeholder="Enter Correspondence Country">
+                        </div>
+                        <div class="mb-3" style="float:left">
+                            <label for="cpincode" class="form-label">Correspondence Pin Code</label>
+                            <input [(ngModel)]="user.cpincode" type="CPin" class="form-control box2" name="cpincode" placeholder="Enter Correspondence Pin Code">
+                        </div>
+                        <div style="clear:both;">&nbsp;</div>
+                    </div> 
+
+
+                    <!-- KYC Docs -->
+                    <div>
+                        <h1 class="mb-5">KYC Documents</h1>
+
+                        <!-- Identity Proof -->
+
+                        <div class="mb-3sub" style="float:left">
+                            <label for="IDType" class="form-label">Identity Proof</label>
+                        </div>
+                        <div style="clear:both;">&nbsp;</div>
+                        
+                        <div class="mb-3 up" style="float:left" >
+                            <label for="inputIdName" class="form-label">ID Name</label>
+                            <br>
+                            <select type="IdName" class="form-control box1" id="inputIdName" placeholder="Select ID Name">
+                            <option selected>Select an option</option>
+                            <option value="Pan">PAN</option>
+                            <option value="Form60">FORM60</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 up" style="float:left">
+                            <label for="inputIdNumber" class="form-label">Id Number</label>
+                            <input type="IdNumber" class="form-control box1" id="inputIdNumber" placeholder="Enter valid Id number">
+                        </div>
+                        <div class="mb-3 up" style="float:left">
+                            <label for="uploadDocFile" class="form-label">Upload Id</label>
+                            <input type="file" class="form-control box1" id="uploadDocFile" accept=".pdf,.jpg,.jpeg,.tif,.tiff">
+                        </div>
+                        <div style="clear:both;">&nbsp;</div>
+
+
+                        <!-- Address Proof -->
+
+                        <div class="mb-3sub" style="float:left">
+                            <label for="IDType" class="form-label">Address Proof</label>
+                        </div>
+                        <div style="clear:both;">&nbsp;</div>
+
+
+                        <div class="mb-3 up" style="float:left" >
+                            <label for="inputIdName" class="form-label">ID Name</label>
+                            <br>
+                            <select type="IdName" class="form-control box1" id="inputIdName" placeholder="Select ID Name">
+                            <option selected>Select an option</option>
+                            <option value="Passport">Passport</option>
+                            <option value="VoterId">Voter Id</option>
+                            <option value="DrivingL">Driving License</option>
+                            <option value="Aadhar">Aadhar Card Number</option>
+                            <option value="NJC">NREGA Job Card</option>
+                            <option value="NPRL">National Population Register Letter</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 up" style="float:left">
+                            <label for="inputIdNumber" class="form-label">Id Number</label>
+                            <input type="IdNumber" class="form-control box1" id="inputIdNumber" placeholder="Enter valid Id number">
+                        </div>
+                        <div class="mb-3 up" style="float:left">
+                            <label for="uploadDocFile" class="form-label">Upload Id</label>
+                            <input type="file" class="form-control box1" id="uploadDocFile" accept=".pdf,.jpg,.jpeg,.tif,.tiff">
+                        </div>
+                        <div style="clear:both;">&nbsp;</div>
+
+
+                        <!-- Other -->
+
+                        <div class="mb-3sub" style="float:left">
+                            <label for="IDType" class="form-label">Other</label>
+                        </div>
+                        <div style="clear:both;">&nbsp;</div>
+
+
+                        <div class="mb-3 up" style="float:left" >
+                            <label for="inputIdName" class="form-label">ID Name</label>
+                            <br>
+                            <select type="IdName" class="form-control box1" id="inputIdName" placeholder="Select ID Name">
+                            <option selected>Select an option</option>
+                            <option value="Photograph">Photograph</option>
+                            </select>
+                        </div> 
+                        <div class="mb-3 up" style="float:left">
+                            <label for="inputIdNumber" class="form-label">Id Number</label>
+                            <input type="IdNumber" class="form-control box1" id="inputIdNumber" placeholder="Enter valid Id number">
+                        </div>
+                        <div class="mb-3 up" style="float:left">
+                            <label for="uploadDocFile" class="form-label">Upload Id</label>
+                            <input type="file" class="form-control box1" id="uploadDocFile" accept=".pdf,.jpg,.jpeg,.tif,.tiff">
+                        </div>
+                        <div style="clear:both;">&nbsp;</div>
+
+                    </div>
+                    
+
+                    <!-- Buttons -->
+                    <div>
+                        <div style="clear:both;">&nbsp;</div>
+                        <div class="button-center">
+                            <button class="btn btnBlue btn-primary">
+                                <a class="nav-link" routerLink="/Welcome-Page">
+                                    <div class="mb-2">Previous</div>
+                                </a>
+                            </button>
+                            <button type="submit" class="btn btnRed btn-primary" (click)="formSubmit()">
+                                <div class="mb-2">Submit</div>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- Legal Create Kyc Form -->
+
+                <div class="LEG" *ngIf="formtype=='LEG'">
+
+                    <!-- Personal details -->
+                    <div>
+                        <h1 class="mb-5">Personal Details</h1>
+                            <div class="mb-3" style="float:left">
+                                <label for="fname" class="form-label" >First Name</label>
+                                <input [(ngModel)]="user.fname" type="firstName" class="form-control box2" name="fname"  placeholder="Enter First Name">
+                            </div>
+                            <div class="mb-3" style="float:left">
+                                <label for="dob" class="form-label">Date of Birth</label>
+                                <input [(ngModel)]="user.dob" type="DateOfBirth" class="form-control box2" name="dob" placeholder="DD/MM/YYYY">
+                            </div>
+                        <div style="clear:both;">&nbsp;</div>
+                    </div>
+
+                    <!-- Contact Details -->
+                    <div>
+                        <h1 class="mb-5">Contact Details</h1>
+                            <div class="mb-3" style="float:left">
+                                <label for="mobile" class="form-label">Mobile Number</label>
+                                <input [(ngModel)]="user.mobile" type="MobileNo" class="form-control box2" name="mobile" placeholder="Enter 10 digit mobile number">
+                            </div>
+                            <div class="mb-3" style="float:left">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input [(ngModel)]="user.email" type="Email" class="form-control box2" name="email" placeholder="Enter your email address">
+                            </div>
+                        <div style="clear:both;">&nbsp;</div>
+                    </div>
+
+                    <!-- Address Details -->
+                    <div>
+                        <h1 class="mb-5">Address Details</h1>
+                            <div class="mb-3" style="float:left">
+                                <label for="addl1" class="form-label">Address line 1</label>
+                                <input [(ngModel)]="user.addl1" type="Add1" class="form-control box-3" name="addl1" placeholder="Enter Flat, Building, Floor, etc.">
+                            </div>
+                        <div style="clear:both;">&nbsp;</div>
+                            <div class="mb-3" style="float:left">
+                                <label for="city" class="form-label">City</label>
+                                <input [(ngModel)]="user.city" type="City" class="form-control box1" name="city"  placeholder="Enter City">
+                            </div>
+                            <div class="mb-3" style="float:left">
+                                <label for="district" class="form-label">District</label>
+                                <input [(ngModel)]="user.district" type="District" class="form-control box1" name="district" placeholder="Enter District">
+                            </div>
+                            <div class="mb-3" style="float:left">
+                                <label for="state" class="form-label">State</label>
+                                <input [(ngModel)]="user.state" type="State" class="form-control box1" name="state" placeholder="Enter State">
+                            </div>
+                        <div style="clear:both;">&nbsp;</div>
+                        <div class="mb-3" style="float:left">
+                            <label for="country" class="form-label">Country</label>
+                            <input [(ngModel)]="user.country" type="Country" class="form-control box2" name="country" placeholder="Enter Country">
+                        </div>
+                        <div class="mb-3" style="float:left">
+                            <label for="pincode" class="form-label">Pin Code</label>
+                            <input [(ngModel)]="user.pincode" type="Pin" class="form-control box2" name="pincode" placeholder="Enter Pin Code">
+                        </div>
+                        <div style="clear:both;">&nbsp;</div>
+                    </div>
+
+                    <!-- Correspondence Address Details -->
+                    <div>
+                        <h1 class="mb-5">Correspondence Address Details</h1>
+                            <div class="mb-3" style="float:left">
+                                <label for="caddl1" class="form-label">Correspondence Address line 1</label>
+                                <input [(ngModel)]="user.caddl1" type="CAdd1" class="form-control box-3" name="caddl1" placeholder="Enter Flat, Building, Floor, etc.">
+                            </div>
+                        <div style="clear:both;">&nbsp;</div>
+                        <div class="mb-3" style="float:left">
+                            <label for="ccity" class="form-label">Correspondence City</label>
+                            <input [(ngModel)]="user.ccity" type="CCity" class="form-control box1" name="ccity"  placeholder="Enter Correspondence City">
+                        </div>
+                        <div class="mb-3" style="float:left">
+                            <label for="cdistrict" class="form-label">Correspondence District</label>
+                            <input [(ngModel)]="user.cdistrict" type="CDistrict" class="form-control box1" name="cdistrict" placeholder="Enter Correspondence District">
+                        </div>
+                        <div class="mb-3" style="float:left">
+                            <label for="cstate" class="form-label">Correspondence State</label>
+                            <input [(ngModel)]="user.cstate" type="CState" class="form-control box1" name="cstate" placeholder="Enter Correspondence State">
+                        </div>
+                        <div style="clear:both;">&nbsp;</div>
+                        <div class="mb-3" style="float:left">
+                            <label for="ccountry" class="form-label">Correspondence Country</label>
+                            <input [(ngModel)]="user.ccountry" type="CCountry" class="form-control box2" name="ccountry" placeholder="Enter Correspondence Country">
+                        </div>
+                        <div class="mb-3" style="float:left">
+                            <label for="cpincode" class="form-label">Correspondence Pin Code</label>
+                            <input [(ngModel)]="user.cpincode" type="CPin" class="form-control box2" name="cpincode" placeholder="Enter Correspondence Pin Code">
+                        </div>
+                        <div style="clear:both;">&nbsp;</div>
+                    </div>
+
+
+                    <!-- KYC Docs -->
+                    <div>
+                        <h1 class="mb-5">KYC Documents</h1>
+
+                        <!-- Identity Proof -->
+
+                        <div class="mb-3sub" style="float:left">
+                            <label for="IDType" class="form-label">Identity Proof</label>
+                        </div>
+                        <div style="clear:both;">&nbsp;</div>
+
+                        <div class="mb-3 up" style="float:left">
+                            <label for="inputIdName" class="form-label">ID Name</label>
+                            <br>
+                            <select type="IdName" class="form-control box1" id="inputIdName" placeholder="Select ID Name">
+                            <option selected>Select an option</option>
+                            <option value="Pan">PAN</option>
+                            <option value="Form60">FORM60</option>
+                            </select>
+                        </div>
+                            <div class="mb-3 up" style="float:left">
+                                <label for="inputIdNumber" class="form-label">Id Number</label>
+                                <input type="IdNumber" class="form-control box1" id="inputIdNumber" placeholder="Enter valid Id number">
+                            </div>
+                            <div class="mb-3 up" style="float:left">
+                                <label for="uploadDocFile" class="form-label">Upload Id</label>
+                                <input type="file" class="form-control box1" id="uploadDocFile" accept=".pdf,.jpg,.jpeg,.tif,.tiff">
+                            </div>
+                        <div style="clear:both;">&nbsp;</div>
+
+                        <!-- Address Proof -->
+
+                        <div class="mb-3sub" style="float:left">
+                            <label for="IDType" class="form-label">Address Proof</label>
+                        </div>
+                        <div style="clear:both;">&nbsp;</div>
+
+                        <div class="mb-3 up" style="float:left">
+                            <label for="inputIdName" class="form-label">ID Name</label>
+                            <br>
+                            <select type="IdName" class="form-control box1" id="inputIdName" placeholder="Select ID Name">
+                            <option selected>Select an option</option>
+                            <option value="RegCer">Registration Certificate</option>
+                            <option value="COI">Certificate of Incorporation/Formation</option>
+                            <option value="GSTIN">GSTIN Certificate</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 up" style="float:left">
+                            <label for="inputIdNumber" class="form-label">Id Number</label>
+                            <input type="IdNumber" class="form-control box1" id="inputIdNumber" placeholder="Enter valid Id number">
+                        </div>
+                        <div class="mb-3 up" style="float:left">
+                            <label for="uploadDocFile" class="form-label">Upload Id</label>
+                            <input type="file" class="form-control box1" id="uploadDocFile" accept=".pdf,.jpg,.jpeg,.tif,.tiff">
+                        </div>
+                        <div style="clear:both;">&nbsp;</div>
+                    </div>
+
+
+                    <!-- Buttons -->
+                    <div>
+                        <div style="clear:both;">&nbsp;</div>
+                        <div class="button-center">
+                            <button class="btn btnBlue btn-primary">
+                                <a class="nav-link" routerLink="/Welcome-Page">
+                                    <div class="mb-2">Previous</div>
+                                </a>
+                            </button>
+                            <button type="submit" class="btn btnRed btn-primary" (click)="formSubmit()">
+                                <div class="mb-2">Submit</div>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>

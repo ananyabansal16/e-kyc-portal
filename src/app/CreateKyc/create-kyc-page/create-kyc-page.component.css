@@ -1,0 +1,13 @@
+.mb-4{
+    display: flex;
+    width: 1440px;
+    height: 51px;
+    flex-direction: column;
+    flex-shrink: 0;
+    color: #01A95B;
+    font-size: 40px;
+    font-family: Raleway;
+    font-weight: 700;
+    padding: 40px;
+    padding-left: 200px;
+}

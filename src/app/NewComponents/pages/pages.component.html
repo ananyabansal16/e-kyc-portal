@@ -1,0 +1,25 @@
+<div>
+    <!-- {{user | json}} -->
+    <form class="form" (ngSumbit)="formSubmit()">
+        <div class="container-fluid">
+            <div class="mb-4">
+                <h1><b>Login Page</b></h1>
+            </div>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input [(ngModel)]="user.username" type="username" class="form-control" name="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input [(ngModel)]="user.password" type="password" class="form-control" name="password" required>
+            </div>
+            <div class="button-center">
+                <a class="nav-link" routerLink="/Welcome-Page">
+                    <button type="submit" class="btn btn-primary btnRed" (click)="formSubmit()">
+                        <div class="mb-2">LOG IN</div>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </form>
+</div>

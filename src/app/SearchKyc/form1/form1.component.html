@@ -1,0 +1,155 @@
+<!--INDIVIDUAL CLIENT SEARCH KYC FORM-->
+<div>
+    {{user | json}}
+    <div class="mb-4">
+        <h1><b>Search your e-Kyc</b></h1>
+    </div>
+    <div class="box-padding">
+        <div [ngClass]="formtype=='ind'? 'container-fluid':'container-fluid-leg'">
+            <form class="form" (ngSumbit)="formSubmit()">
+                
+
+                <!-- ------- CLIENT TYPE CONDITIONAL RADIO ------ -->
+
+
+                <div class="mb-5">
+                    <label for="ctype" class="form-label"> Client Type: </label>
+                </div>
+                <div class="option-center">
+                    <label class="radio-container m-r-45">
+                        <div class="mb-33" style="float:left">
+                        <input  [(ngModel)]="user.ctype" type="radio" name="ctype" value="IND" (click)="clientTypeDisplay('ind')" checked />    Individual
+                        </div>
+                    </label>
+                    <label class="radio-container m-r-45">
+                        <div class="mb-33" style="float:left">
+                        <input [(ngModel)]="user.ctype" type="radio" name="ctype" value="LEG" (click)="clientTypeDisplay('leg')" />    Legal/Corporate
+                        </div>
+                    </label>
+                </div>
+                <div style="clear:both;">&nbsp;</div>
+
+
+                <!-- ------- INPUT FIELDS ------ -->
+                <!-- Individual form -->
+                
+                <div class="ind" *ngIf="formtype=='ind'">
+                        <div class="mb-3" style="float:left">
+                            <label for="fname" class="form-label" >First Name</label>
+                            <input [(ngModel)]="user.fname" type="fname" class="form-control box1" name="fname"  placeholder="Enter First Name">
+                        </div>
+                        <div class="mb-3" style="float:left">
+                            <label for="mname" class="form-label">Middle Name</label>
+                            <input [(ngModel)]="user.mname" type="mname" class="form-control box1" name="mname" placeholder="Enter Middle Name">
+                        </div>
+                        <div class="mb-3" style="float:left">
+                            <label for="lname" class="form-label">Last Name</label>
+                            <input [(ngModel)]="user.lname" type="lname" class="form-control box1" name="lname" placeholder="Enter Last Name">
+                        </div>
+                        <div style="clear:both;">&nbsp;</div>
+                        <div class="mb-3" style="float:left">
+                            
+                            <label for="dob" class="form-label">Date of Birth</label>
+                            <input [(ngModel)]="user.dob" type="dob" class="form-control box2" name="dob" placeholder="DD/MM/YYYY">
+                        </div>
+                        <div class="mb-3" style="float:left">
+                            <label for="gender" class="form-label">Gender</label>
+                            <br>
+                            <select>
+                            <input [(ngModel)]="user.gender" type="Gender" class="form-control box2" name="gender">
+                            <option selected> Select an option</option>
+                            <option value="Male"> Male</option>
+                            <option value="Female"> Female</option>
+                            <option value="Transgender"> Transgender</option>
+                            <option value="Other"> Other</option>
+                            <option value="Prefer not to say"> Prefer not to say</option>
+                            </select>
+                        </div>
+                        <div style="clear:both;">&nbsp;</div>
+                        <div class="mb-3" style="float:left">
+                            <label for="inputDocumentType" class="form-label">Document Type</label>
+                            <br>
+                            <select>
+                            <input type="DocumentType" class="form-control box2" name="inputDocumentType" placeholder="Select Document Type">
+                                <option>Select an option</option>
+                                <option value="ITGI Unique Identifier"> ITGI Unique Identifier</option>
+                                <option value="CKYC Identifier"> CKYC Identifier</option>
+                                <option value="PAN"> PAN</option>
+                                <option value="Passport"> Passport</option>
+                                <option value="Voter ID"> Voter ID </option>
+                                <option value="Driver License"> Driver License</option>
+                                <option value="Aadhar Card Number"> Aadhar Card Number</option>
+                                <option value="NREGA Job Card"> NREGA Job Card</option>
+                                <option value="National Population Register Letter"> National Population Register Letter</option>
+                            </select>
+                        </div>
+                        <div class="mb-3" style="float:left">
+                            <label for="inputDocumentId" class="form-label">Document ID</label>
+                            <input type="DocumentId" class="form-control box2" name="inputDocumentId" placeholder="Mention the Document ID">
+                        </div>
+                        <div style="clear:both;">&nbsp;</div>
+                        <div class="button-center">
+                            <button type="submit" class="btn btnBlue btn-primary">
+                                <a class="nav-link" routerLink="/Welcome-Page">
+                                    <div class="mb-2">Previous</div>
+                                </a>
+                            </button>
+                            <button type="submit" class="btn btnRed btn-primary" (click)="formSubmit()">
+                                <a class="nav-link" routerLink="/Search-E-Kyc/Results">
+                                    <div class="mb-2">Submit</div>
+                                </a>
+                            </button>
+                        </div>
+                </div>
+
+
+                <!-- Legal form -->
+
+
+                <div class="leg" *ngIf="formtype=='leg'">
+                    <div class="mb-3" style="float:left" >
+                    <label for="fname" class="form-label" >First Name</label>
+                    <input [(ngModel)]="user.fname" type="fname" class="form-control box2" name="fname"  placeholder="Enter First Name">
+                </div>
+                <div class="mb-3" style="float:left">
+                    <label for="dob" class="form-label">Date of Birth</label>
+                    <input [(ngModel)]="user.dob" type="dob" class="form-control box2" name="dob" placeholder="DD/MM/YYYY">
+                </div>
+                <div style="clear:both;">&nbsp;</div>
+                <div class="mb-3" style="float:left">
+                    <label for="inputDocumentType" class="form-label">Document Type</label>
+                    <br>
+                    <select>
+                    <input type="DocumentType" class="form-control box2" name="inputDocumentType" placeholder="Select Document Type">
+                        <option>Select an option</option>
+                        <option value="ITGI Unique Identifier">ITGI Unique Identifier</option>
+                        <option value="CKYC Identifier">CKYC Identifier</option>
+                        <option value="PAN">PAN</option>
+                        <option value="Registration Certificate">Registration Certificate</option>
+                        <option value="Certificate of Incorporation/Formation">Certificate of Incorporation/Formation </option>
+                        <option value="GSTIN Certificate">GSTIN Certificate</option>
+                    </select>
+                </div>
+                <div class="mb-3" style="float:left">
+                    <label for="inputDocumentId" class="form-label">Document ID</label>
+                    <input type="DocumentId" class="form-control box2" name="inputDocumentId" placeholder="Mention the Document ID">
+                </div>
+                <div style="clear:both;">&nbsp;</div>
+                <div class="button-center">
+                    <button type="submit" class="btn btnBlue btn-primary">
+                        <a class="nav-link" routerLink="/Welcome-Page">
+                            <div class="mb-2">Previous</div>
+                        </a>
+                    </button>
+                    <button type="submit" class="btn btnRed btn-primary" (click)="formSubmit()">
+                        <a class="nav-link" routerLink="/Search-E-Kyc/Results">
+                            <div class="mb-2">Submit</div>
+                        </a>
+                    </button>
+                </div></div>
+
+
+            </form>
+        </div>
+    </div>
+</div>

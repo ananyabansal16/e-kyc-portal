@@ -1,0 +1,24 @@
+.footer-box{
+    width: 1440px;
+    height: 113px;
+    flex-shrink: 0;
+    border-top: 1px solid #DEE2E6;
+    background: #FFF;
+    text-align: center;
+}
+
+
+.mb-6{
+    display: flex;
+    width: 1440px;
+    height: 91.759px;
+    flex-direction: column;
+    flex-shrink: 0;
+    color: #000;
+    text-align: center;
+    font-size: 18px;
+    font-family: Raleway;
+    padding: 25px;
+}
+
+
